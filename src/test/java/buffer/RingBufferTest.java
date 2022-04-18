@@ -64,9 +64,10 @@ class RingBufferTest {
 
 	@Test
 	void testPeek() {
-		// TODO: implement this test yourself
-		fail("Not yet implemented");
+		setUpBuffer("1", "2", "3");
+		assertEquals("1", ringBuffer.peek());
 	}
+
 
 	private static Stream<Arguments> provideDifferentSizes() {
 		return Stream.of(Arguments.of(1, (Object) new String[] { "1" }),

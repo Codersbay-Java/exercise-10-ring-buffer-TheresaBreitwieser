@@ -28,21 +28,21 @@ public class RingBuffer {
 	 * TODO: capacity Returns the number of elements the buffer can hold.
 	 */
 	public int capacity() {
-		return -1;
+		return queue.length;
 	}
 
 	/**
 	 * TODO: size Returns the number of elements in the buffer.
 	 */
 	public int size() {
-		return -1;
+		return numberOfElementsOnQueue;
 	}
 
 	/**
 	 * TODO: isEmpty Returns true if the buffer contains no elements.
 	 */
 	public boolean isEmpty() {
-		return false;
+		return numberOfElementsOnQueue == 0;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class RingBuffer {
 	 * the maximum number of elements it can hold, before overwriting elements.
 	 */
 	public boolean isFull() {
-		return false;
+		return numberOfElementsOnQueue == queue.length;
 	}
 
 	/**
@@ -61,16 +61,26 @@ public class RingBuffer {
 	 * @param item to be appended to the buffer.
 	 */
 	public void enqueue(String item) {
-		
+		if(queue.length == last) {
+			last=0;
+		}
+		queue[last]=item;
+		if(numberOfElementsOnQueue<queue.length){
+			numberOfElementsOnQueue++;
+			}
+		last++;
 	}
 
 	/**
 	 * TODO: peek Returns the first element from the buffer without removing it.
 	 * 
-	 * @throws a RuntimeException if the buffer is empty.
+	 * @throws RuntimeException if the buffer is empty.
 	 */
 	public String peek() {
-		return null;
+		if(isEmpty()) {
+			throw new RuntimeException("Array is empty");
+		}
+		return queue[first];
 	}
 
 	/**
