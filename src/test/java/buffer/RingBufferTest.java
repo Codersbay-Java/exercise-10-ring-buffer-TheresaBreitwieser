@@ -53,7 +53,7 @@ class RingBufferTest {
 	void testEnqueue(int referenceSize, String... bufferElements) {
 		for (int i = 0; i < bufferElements.length; i++) {
 			ringBuffer.enqueue(bufferElements[i]);
-			if (i > RING_BUFFER_CAPACITY) {
+			if (i >= RING_BUFFER_CAPACITY) {
 				// if we reach the max capacity of the buffer the first element gets overridden
 				assertEquals(bufferElements[i], ringBuffer.peek());
 			} else {
@@ -64,8 +64,8 @@ class RingBufferTest {
 
 	@Test
 	void testPeek() {
-		setUpBuffer("1", "2", "3");
-		assertEquals("1", ringBuffer.peek());
+		setUpBuffer("1", "2", "3", "4");
+		assertEquals("4", ringBuffer.peek());
 	}
 
 

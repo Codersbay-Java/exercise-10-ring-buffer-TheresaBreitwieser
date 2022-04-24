@@ -61,7 +61,7 @@ public class RingBuffer {
 	 * @param item to be appended to the buffer.
 	 */
 	public void enqueue(String item) {
-		if(queue.length == last) {
+		if(isFull()) {
 			last=0;
 		}
 		queue[last]=item;
